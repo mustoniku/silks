@@ -3,242 +3,63 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>SILIKS - Layanan Kesehatan Madrasah</title>
+  <meta name="robots" content="noindex">
+  <title>Membuka Aplikasi SILIKS</title>
   <style>
     * { box-sizing: border-box; }
     body {
-      margin: 0;
       min-height: 100vh;
+      margin: 0;
+      display: grid;
+      place-items: center;
+      padding: 24px;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      color: #102033;
-      background:
-        radial-gradient(circle at 12% 6%, rgba(246,195,67,.22), transparent 28%),
-        linear-gradient(135deg, #f7fff9 0%, #e8f7ed 42%, #d5efe0 100%);
+      color: #152033;
+      background: linear-gradient(135deg, #f7fff9 0%, #e7f7ed 45%, #d6efe0 100%);
     }
-    .shell {
-      width: min(980px, calc(100% - 28px));
-      margin: 0 auto;
-      padding: 28px 0;
+    main {
+      width: min(520px, 100%);
+      padding: 30px;
+      border-radius: 12px;
+      background: rgba(255,255,255,.9);
+      box-shadow: 0 18px 44px rgba(15,42,26,.12);
+      text-align: center;
     }
-    header {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      margin-bottom: 18px;
-    }
-    .logo {
-      width: 58px;
-      height: 58px;
-      border-radius: 14px;
+    .mark {
+      width: 72px;
+      height: 72px;
+      margin: 0 auto 18px;
+      border-radius: 16px;
       display: grid;
       place-items: center;
       color: #fff;
       background: linear-gradient(145deg, #0f7a3b, #07502b);
-      font-size: 28px;
+      font-size: 34px;
       font-weight: 900;
-      box-shadow: 0 12px 26px rgba(15,122,59,.22);
     }
-    h1 {
-      margin: 0;
-      font-size: clamp(28px, 4vw, 42px);
-      line-height: 1.05;
-      letter-spacing: 0;
-    }
-    .subtitle {
-      margin: 6px 0 0;
-      color: #587067;
-      font-size: 16px;
-    }
-    .card {
-      border: 1px solid rgba(255,255,255,.78);
-      border-radius: 12px;
-      background: rgba(255,255,255,.88);
-      box-shadow: 0 18px 44px rgba(15,42,26,.12);
-      overflow: hidden;
-    }
-    .card-head {
-      padding: 20px 22px;
-      border-bottom: 1px solid #dbe7df;
-      background: linear-gradient(90deg, rgba(15,122,59,.08), rgba(246,195,67,.12));
-    }
-    .card-head h2 {
-      margin: 0;
-      font-size: 22px;
-      letter-spacing: 0;
-    }
-    form {
-      padding: 22px;
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 16px;
-    }
-    label {
-      display: grid;
-      gap: 7px;
-      font-weight: 800;
-      color: #14231c;
-    }
-    .wide { grid-column: 1 / -1; }
-    input, select, textarea {
-      width: 100%;
-      min-height: 44px;
-      border: 1px solid #cfded5;
-      border-radius: 9px;
-      padding: 10px 12px;
-      font: inherit;
-      background: #fff;
-      color: #102033;
-      outline: none;
-    }
-    textarea {
-      min-height: 98px;
-      resize: vertical;
-    }
-    input:focus, select:focus, textarea:focus {
-      border-color: #0f7a3b;
-      box-shadow: 0 0 0 3px rgba(15,122,59,.14);
-    }
-    .actions {
-      grid-column: 1 / -1;
-      display: flex;
+    h1 { margin: 0; font-size: 28px; }
+    p { margin: 12px 0 0; color: #607068; line-height: 1.6; }
+    a {
+      display: inline-flex;
       align-items: center;
-      gap: 12px;
-      flex-wrap: wrap;
-      padding-top: 4px;
-    }
-    button {
+      justify-content: center;
       min-height: 46px;
-      border: 0;
-      border-radius: 9px;
+      margin-top: 22px;
       padding: 10px 18px;
-      background: #0f7a3b;
+      border-radius: 8px;
       color: #fff;
-      font: inherit;
-      font-weight: 900;
-      cursor: pointer;
-      box-shadow: 0 10px 22px rgba(15,122,59,.2);
-    }
-    button:disabled {
-      opacity: .62;
-      cursor: wait;
-    }
-    .status {
-      color: #587067;
+      background: #0f7a3b;
+      text-decoration: none;
       font-weight: 800;
-    }
-    .status.ok { color: #0f7a3b; }
-    .status.err { color: #b42318; }
-    iframe {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      opacity: 0;
-      pointer-events: none;
-    }
-    @media (max-width: 720px) {
-      form { grid-template-columns: 1fr; }
-      header { align-items: flex-start; }
     }
   </style>
 </head>
 <body>
-  <div class="shell">
-    <header>
-      <div class="logo">S</div>
-      <div>
-        <h1>SILIKS</h1>
-        <p class="subtitle">Aplikasi Layanan Kesehatan Madrasah Kabupaten Tegal</p>
-      </div>
-    </header>
-
-    <section class="card">
-      <div class="card-head">
-        <h2>Input Layanan Kesehatan</h2>
-      </div>
-
-      <form id="siliksForm" method="post" target="submitFrame">
-        <label>
-          NSM
-          <input name="nsm" inputmode="numeric" maxlength="12" pattern="\d{12}" placeholder="12 digit NSM" required>
-        </label>
-
-        <label>
-          Nama Madrasah
-          <input name="namaMadrasah" required>
-        </label>
-
-        <label>
-          Kecamatan
-          <input name="kecamatan">
-        </label>
-
-        <label>
-          Nama Petugas
-          <input name="namaPetugas" required>
-        </label>
-
-        <label>
-          Tanggal Layanan
-          <input type="date" name="tanggalLayanan" required>
-        </label>
-
-        <label>
-          Jenis Layanan
-          <select name="jenisLayanan" required>
-            <option value="">Pilih layanan</option>
-            <option>Pemeriksaan kesehatan</option>
-            <option>UKS/M</option>
-            <option>PHBS</option>
-            <option>Imunisasi</option>
-            <option>Penyuluhan kesehatan</option>
-            <option>Lainnya</option>
-          </select>
-        </label>
-
-        <label>
-          Jumlah Siswa Diperiksa
-          <input type="number" name="jumlahSiswa" min="0" value="0">
-        </label>
-
-        <label class="wide">
-          Catatan
-          <textarea name="catatan" placeholder="Catatan singkat layanan kesehatan"></textarea>
-        </label>
-
-        <div class="actions">
-          <button id="submitBtn" type="submit">Kirim Data</button>
-          <span id="status" class="status">Alamat tetap di kemenagkabtegal.id/siliks/.</span>
-        </div>
-      </form>
-    </section>
-  </div>
-
-  <iframe name="submitFrame" title="Pengiriman data SILIKS"></iframe>
-
-  <script>
-    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzq0X6FiYJT6O8GjXNHFnhVdti9IiklSFqYxFtXy3fkv11zZ2E3Lf7uoB_jm4gj-qyT/exec';
-    const form = document.getElementById('siliksForm');
-    const submitBtn = document.getElementById('submitBtn');
-    const statusEl = document.getElementById('status');
-
-    form.action = SCRIPT_URL;
-
-    form.addEventListener('submit', () => {
-      submitBtn.disabled = true;
-      statusEl.className = 'status';
-      statusEl.textContent = 'Mengirim data...';
-    });
-
-    window.addEventListener('message', event => {
-      const data = event.data || {};
-      if (typeof data !== 'object' || !('ok' in data)) return;
-
-      submitBtn.disabled = false;
-      statusEl.className = data.ok ? 'status ok' : 'status err';
-      statusEl.textContent = data.message || (data.ok ? 'Data berhasil dikirim.' : 'Data gagal dikirim.');
-
-      if (data.ok) form.reset();
-    });
-  </script>
+  <main>
+    <div class="mark">S</div>
+    <h1>Membuka Aplikasi SILIKS</h1>
+    <p>Klik tombol berikut untuk membuka aplikasi resmi SILIKS.</p>
+    <a href="https://script.google.com/macros/s/AKfycbzq0X6FiYJT6O8GjXNHFnhVdti9IiklSFqYxFtXy3fkv11zZ2E3Lf7uoB_jm4gj-qyT/exec" rel="noopener">Buka SILIKS</a>
+  </main>
 </body>
 </html>
