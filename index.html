@@ -171,9 +171,24 @@
   <script>
     const frame = document.getElementById('siliksFrame');
     const splash = document.getElementById('splash');
-    frame.addEventListener('load', () => {
+
+    let appIsReady = false;
+    const revealApplication = () => {
+      if (appIsReady) return;
+      appIsReady = true;
       frame.classList.add('ready');
       setTimeout(() => splash.classList.add('hidden'), 300);
+    };
+
+    window.addEventListener('message', (event) => {
+      if (event.data && event.data.type === 'SILIKS_APP_READY') {
+        revealApplication();
+      }
+    });
+
+    // Pengaman apabila browser memblokir pesan dari iframe.
+    frame.addEventListener('load', () => {
+      setTimeout(revealApplication, 15000);
     });
   </script>
 </body>
