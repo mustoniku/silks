@@ -45,19 +45,23 @@
       height: 100%;
     }
     .splash-backdrop {
-      background: url('./welcome-siliks-madrasah.jpg?v=20260828-1') center / cover no-repeat;
-      filter: blur(24px) saturate(.78) brightness(1.08);
-      transform: scale(1.08);
-      opacity: .9;
+      background:
+        radial-gradient(circle at 8% 22%, rgba(153,246,228,.48), transparent 30%),
+        radial-gradient(circle at 92% 24%, rgba(186,230,253,.48), transparent 31%),
+        radial-gradient(ellipse at 50% 100%, rgba(167,243,208,.42), transparent 50%),
+        linear-gradient(135deg, #effdf7 0%, #f8fffc 44%, #eefaff 72%, #fffdf2 100%);
+      filter: none;
+      transform: none;
+      opacity: 1;
     }
     .splash-backdrop::after {
       content: "";
       position: absolute;
-      inset: -5%;
-      background: linear-gradient(90deg,
-        rgba(218,247,238,.62) 0%, rgba(226,249,244,.28) 18%,
-        transparent 34%, transparent 66%,
-        rgba(226,249,244,.28) 82%, rgba(218,247,238,.62) 100%);
+      inset: 0;
+      background:
+        linear-gradient(110deg, transparent 0 12%, rgba(255,255,255,.34) 24%, transparent 38%),
+        linear-gradient(250deg, transparent 0 12%, rgba(255,255,255,.32) 25%, transparent 39%);
+      opacity: .75;
     }
     .splash-image {
       z-index: 1;
