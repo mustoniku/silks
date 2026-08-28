@@ -46,17 +46,35 @@
     }
     .splash-backdrop {
       background: url('./welcome-siliks-madrasah.jpg?v=20260828-1') center / cover no-repeat;
-      filter: blur(10px) saturate(.96);
-      transform: scale(1.025);
-      opacity: .82;
+      filter: blur(24px) saturate(.78) brightness(1.08);
+      transform: scale(1.08);
+      opacity: .9;
+    }
+    .splash-backdrop::after {
+      content: "";
+      position: absolute;
+      inset: -5%;
+      background: linear-gradient(90deg,
+        rgba(218,247,238,.62) 0%, rgba(226,249,244,.28) 18%,
+        transparent 34%, transparent 66%,
+        rgba(226,249,244,.28) 82%, rgba(218,247,238,.62) 100%);
     }
     .splash-image {
       z-index: 1;
-      object-fit: contain;
-      object-position: center;
+      inset: auto;
+      left: 50%;
+      top: 50%;
+      width: min(100vw, 177.7778vh);
+      height: min(100vh, 56.25vw);
+      transform: translate(-50%, -50%);
+      object-fit: fill;
       filter: none;
-      -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 7%, #000 93%, transparent 100%);
-      mask-image: linear-gradient(90deg, transparent 0%, #000 7%, #000 93%, transparent 100%);
+      -webkit-mask-image: linear-gradient(90deg,
+        transparent 0%, rgba(0,0,0,.18) 3%, rgba(0,0,0,.72) 8%, #000 13%,
+        #000 87%, rgba(0,0,0,.72) 92%, rgba(0,0,0,.18) 97%, transparent 100%);
+      mask-image: linear-gradient(90deg,
+        transparent 0%, rgba(0,0,0,.18) 3%, rgba(0,0,0,.72) 8%, #000 13%,
+        #000 87%, rgba(0,0,0,.72) 92%, rgba(0,0,0,.18) 97%, transparent 100%);
     }
     .status {
       position: absolute;
@@ -116,7 +134,6 @@
       .progress-bar { animation-duration: 3s, 5s; }
     }
     @media (max-width: 640px) {
-      .splash-image { object-position: center 42%; }
       .status {
         top: 17.5%;
         width: min(350px, calc(100% - 20px));
