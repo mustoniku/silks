@@ -73,63 +73,7 @@
       transform: translate(-50%, -50%);
       object-fit: fill;
       filter: none;
-      -webkit-mask-image: linear-gradient(90deg,
-        transparent 0%, rgba(0,0,0,.18) 3%, rgba(0,0,0,.72) 8%, #000 13%,
-        #000 87%, rgba(0,0,0,.72) 92%, rgba(0,0,0,.18) 97%, transparent 100%);
-      mask-image: linear-gradient(90deg,
-        transparent 0%, rgba(0,0,0,.18) 3%, rgba(0,0,0,.72) 8%, #000 13%,
-        #000 87%, rgba(0,0,0,.72) 92%, rgba(0,0,0,.18) 97%, transparent 100%);
-    }
-    .people-labels {
-      position: absolute;
-      z-index: 2;
-      left: 50%;
-      top: 50%;
-      width: min(100vw, 177.7778vh);
-      height: min(100vh, 56.25vw);
-      transform: translate(-50%, -50%);
-      pointer-events: none;
-      font-family: Arial, sans-serif;
-    }
-    .person-label {
-      position: absolute;
-      transform: translateX(-50%);
-      width: clamp(92px, 13.5%, 226px);
-      padding: 5px 7px 6px;
-      border: 1px solid rgba(255,255,255,.82);
-      border-radius: 9px;
-      background: linear-gradient(180deg, rgba(255,255,255,.95), rgba(241,253,247,.9));
-      box-shadow: 0 2px 9px rgba(5,70,45,.25);
-      color: #075b43;
-      font-size: clamp(7px, .85vw, 14px);
-      font-weight: 800;
-      line-height: 1.12;
-      text-align: center;
-      text-shadow: 0 1px 0 rgba(255,255,255,.75);
-    }
-    .person-label small {
-      display: block;
-      margin-top: 2px;
-      color: #3d6659;
-      font-size: .78em;
-      font-weight: 700;
-      line-height: 1.12;
-    }
-    .person-label.top-left { left: 17.2%; top: 72.4%; }
-    .person-label.top-right { left: 83.8%; top: 72.4%; }
-    .person-label.bottom-1 { left: 25.0%; top: 87.3%; }
-    .person-label.bottom-2 { left: 37.0%; top: 87.3%; }
-    .person-label.bottom-3 { left: 49.0%; top: 87.3%; }
-    .person-label.bottom-4 { left: 61.0%; top: 87.3%; }
-    .person-label.bottom-5 { left: 73.0%; top: 87.3%; }
-    @media (max-width: 640px) {
-      .person-label {
-        width: clamp(62px, 15%, 110px);
-        padding: 3px 3px 4px;
-        border-radius: 6px;
-        font-size: clamp(5px, 1.35vw, 9px);
-      }
-      .person-label small { font-size: .72em; }
+      /* Tampilkan gambar utuh agar nama yang tercetak tetap jelas. */
     }
     .status {
       position: absolute;
@@ -202,19 +146,10 @@
     <div class="splash-backdrop" aria-hidden="true"></div>
     <img
       class="splash-image"
-      src="./welcome-siliks-madrasah.jpg?v=20260828-1"
+      src="./welcome-siliks-madrasah-v2.png?v=20260918-1"
       alt="Selamat datang di Aplikasi SILIKS Madrasah"
       fetchpriority="high"
     >
-    <div class="people-labels" aria-label="Pimpinan dan tim SILIKS">
-      <div class="person-label top-left">H. AHMAD MUHDZIR, S.Ag., M.M.<small>Kepala Kantor Kementerian Agama Kabupaten Tegal</small></div>
-      <div class="person-label top-right">H. BY RONI SULCHAN, S.Ag., M.Pd.I.<small>Kepala Seksi Pendidikan Madrasah</small></div>
-      <div class="person-label bottom-1">Adelina</div>
-      <div class="person-label bottom-2">Ita Fariyati</div>
-      <div class="person-label bottom-3">Mustoni</div>
-      <div class="person-label bottom-4">Arief</div>
-      <div class="person-label bottom-5">Ali Maftukhin</div>
-    </div>
     <div class="status">
       <span>Sedang menyiapkan halaman login</span>
       <span class="progress-track" aria-hidden="true"><span class="progress-bar"></span></span>
