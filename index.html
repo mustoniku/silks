@@ -46,11 +46,11 @@
     }
     .splash-backdrop {
       background:
-        linear-gradient(135deg, rgba(239,253,247,.76), rgba(238,250,255,.62)),
+        linear-gradient(90deg, rgba(239,253,247,.9), rgba(250,255,253,.76) 50%, rgba(238,250,255,.9)),
         url("./welcome-siliks-madrasah-v2.png?v=20260918-1") center / cover no-repeat;
-      filter: blur(22px);
-      transform: scale(1.08);
-      opacity: .92;
+      filter: blur(10px);
+      transform: scale(1.04);
+      opacity: .58;
     }
     .splash-backdrop::after {
       content: "";
@@ -73,11 +73,11 @@
       filter: none;
       /* Gambar utama tetap 16:9; ruang sisi ditutup oleh backdrop blur. */
       -webkit-mask-image: linear-gradient(90deg,
-        transparent 0%, rgba(0,0,0,.18) 3%, rgba(0,0,0,.72) 8%, #000 13%,
-        #000 87%, rgba(0,0,0,.72) 92%, rgba(0,0,0,.18) 97%, transparent 100%);
+        transparent 0%, rgba(0,0,0,.28) 1.5%, rgba(0,0,0,.82) 5%, #000 8%,
+        #000 92%, rgba(0,0,0,.82) 95%, rgba(0,0,0,.28) 98.5%, transparent 100%);
       mask-image: linear-gradient(90deg,
-        transparent 0%, rgba(0,0,0,.18) 3%, rgba(0,0,0,.72) 8%, #000 13%,
-        #000 87%, rgba(0,0,0,.72) 92%, rgba(0,0,0,.18) 97%, transparent 100%);
+        transparent 0%, rgba(0,0,0,.28) 1.5%, rgba(0,0,0,.82) 5%, #000 8%,
+        #000 92%, rgba(0,0,0,.82) 95%, rgba(0,0,0,.28) 98.5%, transparent 100%);
     }
     .status {
       position: absolute;
