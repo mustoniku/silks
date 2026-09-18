@@ -64,12 +64,17 @@
     }
     .splash-image {
       z-index: 2;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
+      left: 50%;
+      top: 50%;
+      inset: auto;
+      width: min(100vw, 177.9425vh);
+      height: min(100vh, 56.1979vw);
+      transform: translate(-50%, -50%);
+      object-fit: fill;
       background: transparent;
       filter: none;
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,.45) 2.5%, #000 7%, #000 93%, rgba(0,0,0,.45) 97.5%, transparent 100%);
+      mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,.45) 2.5%, #000 7%, #000 93%, rgba(0,0,0,.45) 97.5%, transparent 100%);
     }
     .status {
       position: absolute;
@@ -184,17 +189,3 @@
   </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
