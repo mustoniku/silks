@@ -37,21 +37,34 @@
       visibility: hidden;
       pointer-events: none;
     }
-    .splash-backdrop,
-    .splash-image {
+    .splash-backdrop {
       position: absolute;
       inset: 0;
-      width: 100%;
-      height: 100%;
-    }
-    .splash-backdrop {
       display: block;
       background:
         linear-gradient(110deg, rgba(232,250,243,.58), rgba(224,247,242,.32) 45%, rgba(232,250,243,.58)),
-        url("./welcome-siliks-madrasah-v2.png?v=20260918-4") center / cover no-repeat;
+        url("./welcome-siliks-madrasah-v2.png?v=20260918-5") center / cover no-repeat;
       filter: blur(24px);
       transform: scale(1.08);
       opacity: .82;
+    }
+    .splash-frame {
+      position: absolute;
+      z-index: 2;
+      left: 50%;
+      top: 50%;
+      width: 100%;
+      height: 100%;
+      transform: translate(-50%, -50%);
+      overflow: visible;
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,.45) 2.5%, #000 7%, #000 93%, rgba(0,0,0,.45) 97.5%, transparent 100%);
+      mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,.45) 2.5%, #000 7%, #000 93%, rgba(0,0,0,.45) 97.5%, transparent 100%);
+    }
+    .splash-image {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: fill;
     }
     .splash-backdrop::after {
       content: "";
@@ -61,20 +74,6 @@
         linear-gradient(110deg, transparent 0 12%, rgba(255,255,255,.34) 24%, transparent 38%),
         linear-gradient(250deg, transparent 0 12%, rgba(255,255,255,.32) 25%, transparent 39%);
       opacity: .75;
-    }
-    .splash-image {
-      z-index: 2;
-      left: 50%;
-      top: 50%;
-      inset: auto;
-      width: min(100vw, 177.9425vh);
-      height: min(100vh, 56.1979vw);
-      transform: translate(-50%, -50%);
-      object-fit: fill;
-      background: transparent;
-      filter: none;
-      -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,.45) 2.5%, #000 7%, #000 93%, rgba(0,0,0,.45) 97.5%, transparent 100%);
-      mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,.45) 2.5%, #000 7%, #000 93%, rgba(0,0,0,.45) 97.5%, transparent 100%);
     }
     .status {
       position: absolute;
@@ -145,12 +144,14 @@
 <body>
   <div id="splash" class="splash" role="status" aria-live="polite">
     <div class="splash-backdrop" aria-hidden="true"></div>
-    <img
-      class="splash-image"
-      src="./welcome-siliks-madrasah-v2.png?v=20260918-3"
-      alt="Selamat datang di Aplikasi SILIKS Madrasah"
-      fetchpriority="high"
-    >
+    <div class="splash-frame" aria-hidden="true">
+      <img
+        class="splash-image"
+        src="./welcome-siliks-madrasah-v2.png?v=20260918-5"
+        alt=""
+        fetchpriority="high"
+      >
+    </div>
     <div class="status">
       <span>Sedang menyiapkan halaman login</span>
       <span class="progress-track" aria-hidden="true"><span class="progress-bar"></span></span>
@@ -167,6 +168,27 @@
   <script>
     const frame = document.getElementById('siliksFrame');
     const splash = document.getElementById('splash');
+
+    const splashImage = document.querySelector(".splash-image");
+    const splashFrame = document.querySelector(".splash-frame");
+
+    const fitSplashImage = () => {
+      const ratio = (splashImage.naturalWidth || 1920) / (splashImage.naturalHeight || 1079);
+      const viewportWidth = splash.clientWidth;
+      const viewportHeight = splash.clientHeight;
+      let width = viewportWidth;
+      let height = width / ratio;
+      if (height > viewportHeight) {
+        height = viewportHeight;
+        width = height * ratio;
+      }
+      splashFrame.style.width = `${width}px`;
+      splashFrame.style.height = `${height}px`;
+    };
+
+    splashImage.addEventListener("load", fitSplashImage, { once: true });
+    window.addEventListener("resize", fitSplashImage);
+    fitSplashImage();
 
     let appIsReady = false;
     const revealApplication = () => {
