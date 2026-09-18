@@ -44,7 +44,15 @@
       width: 100%;
       height: 100%;
     }
-    .splash-backdrop { display: none; }
+    .splash-backdrop {
+      display: block;
+      background:
+        linear-gradient(110deg, rgba(232,250,243,.58), rgba(224,247,242,.32) 45%, rgba(232,250,243,.58)),
+        url("./welcome-siliks-madrasah-v2.png?v=20260918-4") center / cover no-repeat;
+      filter: blur(24px);
+      transform: scale(1.08);
+      opacity: .82;
+    }
     .splash-backdrop::after {
       content: "";
       position: absolute;
@@ -60,7 +68,7 @@
       width: 100%;
       height: 100%;
       object-fit: contain;
-      background: #eaf8f4;
+      background: transparent;
       filter: none;
     }
     .status {
@@ -176,6 +184,9 @@
   </script>
 </body>
 </html>
+
+
+
 
 
 
