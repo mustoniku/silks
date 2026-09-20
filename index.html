@@ -37,33 +37,20 @@
       visibility: hidden;
       pointer-events: none;
     }
-    .splash-backdrop {
+    .splash-backdrop,
+    .splash-image {
       position: absolute;
       inset: 0;
-      display: block;
+      width: 100%;
+      height: 100%;
+    }
+    .splash-backdrop {
       background:
-        linear-gradient(110deg, rgba(232,250,243,.58), rgba(224,247,242,.32) 45%, rgba(232,250,243,.58)),
-        url("./welcome-siliks-madrasah-v2.png?v=20260918-5") center / cover no-repeat;
-      filter: blur(24px);
+        linear-gradient(135deg, rgba(239,253,247,.76), rgba(238,250,255,.62)),
+        url("./welcome-siliks-madrasah-v2.png?v=20260918-1") center / cover no-repeat;
+      filter: blur(22px);
       transform: scale(1.08);
-      opacity: .82;
-    }
-    .splash-frame {
-      position: absolute;
-      z-index: 2;
-      left: 50%;
-      top: 50%;
-      width: 100%;
-      height: 100%;
-      transform: translate(-50%, -50%);
-      overflow: visible;
-      -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,.45) 2.5%, #000 7%, #000 93%, rgba(0,0,0,.45) 97.5%, transparent 100%);
-      mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,.45) 2.5%, #000 7%, #000 93%, rgba(0,0,0,.45) 97.5%, transparent 100%);
-    }
-    .splash-image {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
+      opacity: .92;
     }
     .splash-backdrop::after {
       content: "";
@@ -74,9 +61,27 @@
         linear-gradient(250deg, transparent 0 12%, rgba(255,255,255,.32) 25%, transparent 39%);
       opacity: .75;
     }
+    .splash-image {
+      z-index: 1;
+      inset: auto;
+      left: 50%;
+      top: 50%;
+      width: min(100vw, 177.7778vh);
+      height: min(100vh, 56.25vw);
+      transform: translate(-50%, -50%);
+      object-fit: fill;
+      filter: none;
+      /* Gambar utama tetap 16:9; ruang sisi ditutup oleh backdrop blur. */
+      -webkit-mask-image: linear-gradient(90deg,
+        transparent 0%, rgba(0,0,0,.18) 3%, rgba(0,0,0,.72) 8%, #000 13%,
+        #000 87%, rgba(0,0,0,.72) 92%, rgba(0,0,0,.18) 97%, transparent 100%);
+      mask-image: linear-gradient(90deg,
+        transparent 0%, rgba(0,0,0,.18) 3%, rgba(0,0,0,.72) 8%, #000 13%,
+        #000 87%, rgba(0,0,0,.72) 92%, rgba(0,0,0,.18) 97%, transparent 100%);
+    }
     .status {
       position: absolute;
-      z-index: 3;
+      z-index: 2;
       left: 50%;
       top: 18.5%;
       transform: translateX(-50%);
@@ -143,14 +148,12 @@
 <body>
   <div id="splash" class="splash" role="status" aria-live="polite">
     <div class="splash-backdrop" aria-hidden="true"></div>
-    <div class="splash-frame" aria-hidden="true">
-      <img
-        class="splash-image"
-        src="./welcome-siliks-madrasah-v2.png?v=20260918-5"
-        alt=""
-        fetchpriority="high"
-      >
-    </div>
+    <img
+      class="splash-image"
+      src="./welcome-siliks-madrasah-v2.png?v=20260918-1"
+      alt="Selamat datang di Aplikasi SILIKS Madrasah"
+      fetchpriority="high"
+    >
     <div class="status">
       <span>Sedang menyiapkan halaman login</span>
       <span class="progress-track" aria-hidden="true"><span class="progress-bar"></span></span>
@@ -167,27 +170,6 @@
   <script>
     const frame = document.getElementById('siliksFrame');
     const splash = document.getElementById('splash');
-
-    const splashImage = document.querySelector(".splash-image");
-    const splashFrame = document.querySelector(".splash-frame");
-
-    const fitSplashImage = () => {
-      const ratio = (splashImage.naturalWidth || 1920) / (splashImage.naturalHeight || 1079);
-      const viewportWidth = splash.clientWidth;
-      const viewportHeight = splash.clientHeight;
-      let width = viewportWidth;
-      let height = width / ratio;
-      if (height > viewportHeight) {
-        height = viewportHeight;
-        width = height * ratio;
-      }
-      splashFrame.style.width = `${width}px`;
-      splashFrame.style.height = `${height}px`;
-    };
-
-    splashImage.addEventListener("load", fitSplashImage, { once: true });
-    window.addEventListener("resize", fitSplashImage);
-    fitSplashImage();
 
     let appIsReady = false;
     const revealApplication = () => {
@@ -210,3 +192,5 @@
   </script>
 </body>
 </html>
+
+
